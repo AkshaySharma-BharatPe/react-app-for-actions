@@ -13,6 +13,6 @@ jobs:
           bootstrap: 'yarn install'
           build_command: 'yarn run build'
           dist_path: 'build/static'
-          base_branch: ${{ github.base_ref }}
-          head_branch: ${{ github.head_ref }}
+          # base_branch: ${{ github.base_ref }}
+          # head_branch: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
