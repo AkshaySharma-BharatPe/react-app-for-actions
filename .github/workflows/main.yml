@@ -55,6 +55,12 @@ jobs:
           echo "${{ github.ref }}"
       
       - run: |
+          echo "${{ github.base_ref }}"
+
+      - run: |
+          echo "${{ github.head_ref }}"
+      
+      - run: |
           echo "${{ steps.branch-name.outputs.head_ref_branch }}"
 
       - run: |
