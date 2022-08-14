@@ -73,10 +73,10 @@ jobs:
 
     - name: Get diff
       id: get-diff
-      uses: ./
+      uses: build
       with:
-        base_path: './base/stats.json'
-        pr_path: './pr/stats.json'
+        base_path: 'build/base/stats.json'
+        pr_path: 'build/pr/stats.json'
 
     - name: Comment
       uses: NejcZdovc/comment-pr@v1
