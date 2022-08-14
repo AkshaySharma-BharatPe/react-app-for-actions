@@ -5,6 +5,9 @@ jobs:
   calculate-size:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      
+
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
