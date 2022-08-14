@@ -21,13 +21,11 @@ jobs:
     - name: Build
       run: npm run build
 
-    - run: mkdir -p stats
-
     - name: Upload base stats.json
       uses: actions/upload-artifact@v3
       with:
         name: base
-        path: ./stats/stats.json
+        path: output/stats.json
         retention-days: 1
 
   build-pr:
@@ -49,7 +47,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pr
-        path: ./stats/stats.json
+        path: output/stats.json
         retention-days: 1
 
   report:
