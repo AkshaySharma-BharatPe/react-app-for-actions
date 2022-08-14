@@ -1,1 +1,1 @@
-# Testing Github Workflow for js bundler
+# Testing Github Workflow for JS bundler
