@@ -50,6 +50,9 @@ jobs:
             echo "::set-output name=ref_branch::$(eval printf "%s" "$REF_BRANCH")"
           fi
         shell: bash
+
+      - run: |
+          echo "${{ github.ref }}"
       
       - run: |
           echo "${{ steps.branch-name.outputs.head_ref_branch }}"
