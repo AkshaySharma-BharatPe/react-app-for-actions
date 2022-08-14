@@ -1,8 +1,4 @@
 import logo from './logo.svg';
-import img1 from './assets/1.jpeg';
-import img2 from './assets/2.jpg';
-import img3 from './assets/3.jpeg';
-import img4 from './assets/4.png';
 
 import './App.css';
 
@@ -23,10 +19,6 @@ function App() {
           Learn React
         </a>
       </header>
-      <img src={img1} className="App-logo" alt="logo" />
-      <img src={img2} className="App-logo" alt="logo" />
-      <img src={img3} className="App-logo" alt="logo" />
-      <img src={img4} className="App-logo" alt="logo" />
     </div>
   );
 }
