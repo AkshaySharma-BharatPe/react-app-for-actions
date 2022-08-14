@@ -33,19 +33,6 @@ jobs:
     - name: Build
       run: npm run build
 
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@v1
-        with:
-          node-version: '16.16.0'
-    - uses: AkshaySharma-BharatPe/JSBundleSize@master
-        with:
-          bootstrap: 'yarn install'
-          build_command: 'yarn run build'
-          dist_path: 'build/static'
-          base_branch: ${{ github.base_ref }}
-          head_branch: ${{ github.head_ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Upload base stats.json
       uses: actions/upload-artifact@v2
       with:
@@ -65,19 +52,6 @@ jobs:
 
     - name: Build
       run: npm run build
-
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@v1
-        with:
-          node-version: '16.16.0'
-    - uses: AkshaySharma-BharatPe/JSBundleSize@master
-        with:
-          bootstrap: 'yarn install'
-          build_command: 'yarn run build'
-          dist_path: 'build/static'
-          base_branch: ${{ github.base_ref }}
-          head_branch: ${{ github.head_ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload base stats.json
       uses: actions/upload-artifact@v2
