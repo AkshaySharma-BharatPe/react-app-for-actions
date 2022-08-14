@@ -34,7 +34,6 @@ jobs:
 
   get-branch:
     runs-on: ubuntu-latest
-    using: "composite"
     steps:
       - id: branch
         run: |
