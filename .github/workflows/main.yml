@@ -4,66 +4,15 @@ on: [pull_request]
 jobs:
   calculate-size:
     runs-on: ubuntu-latest
-    steps:      
-      # - name: Get branch name
-      #   id: branch-name
-      #   uses: tj-actions/branch-names@v5.4
-
-      # - name: Get Head Ref branch name (i.e The current pull request branch)
-      #   run: |
-      #     echo "${{ steps.branch-name.outputs.head_ref_branch }}"
-
-      # - name: Get Base Ref branch name (i.e The target of a pull request.)
-      #   run: |
-      #     echo "${{ steps.branch-name.outputs.base_ref_branch }}"
-      
-      # - name: Default branch name
-      #   run: |
-      #     echo "${{ steps.branch-name.outputs.default_branch }}"
-
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      # - uses: AkshaySharma-BharatPe/JSBundleSize@master
-      #   with:
-      #     bootstrap: 'yarn install'
-      #     build_command: 'yarn run build'
-      #     dist_path: 'build/static'
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-
-  get-branch:
-    runs-on: ubuntu-latest
-    steps:
-      - id: branch
-        run: |
-          if [[ "${{ github.ref }}" != "refs/tags/"* ]]; then
-            BASE_REF=$(printf "%q" "${{ github.base_ref }}")
-            HEAD_REF=$(printf "%q" "${{ github.head_ref }}")
-            REF=$(printf "%q" "${{ github.ref }}")
-            BASE_REF=${BASE_REF/refs\/heads\//}
-            HEAD_REF=${HEAD_REF/refs\/heads\//}
-            echo "::set-output name=base_ref_branch::$(eval printf "%s" "$BASE_REF")"
-            echo "::set-output name=head_ref_branch::$(eval printf "%s" "$HEAD_REF")"
-            REF_BRANCH=${REF/refs\/pull\//}
-            REF_BRANCH=${REF_BRANCH/refs\/heads\//}
-            echo "::set-output name=ref_branch::$(eval printf "%s" "$REF_BRANCH")"
-          fi
-        shell: bash
-
-      - run: |
-          echo "${{ github.ref }}"
-      
-      - run: |
-          echo "${{ github.base_ref }}"
-
-      - run: |
-          echo "${{ github.head_ref }}"
-      
-      - run: |
-          echo "${{ steps.branch-name.outputs.head_ref_branch }}"
-
-      - run: |
-          echo "${{ steps.branch-name.outputs.base_ref_branch }}"
-
-
+      - uses: AkshaySharma-BharatPe/JSBundleSize@master
+        with:
+          bootstrap: 'yarn install'
+          build_command: 'yarn run build'
+          dist_path: 'build/static'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base_branch: ${{ github.base_ref }}
+          head_branch: ${{ github.head_ref }}
