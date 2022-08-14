@@ -7,6 +7,12 @@ jobs:
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - run: echo "Your Branch name is - ${{ steps.extract_branch.outputs.branch }} ."
 
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
