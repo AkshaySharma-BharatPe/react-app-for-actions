@@ -14,15 +14,17 @@ jobs:
 
       - run: echo "Your Branch name is - ${{ steps.extract_branch.outputs.branch }} | ."
       - run: echo running on branch ${GITHUB_REF##*/}
+      - run: echo running on branch ${GITHUB_HEAD_REF##*/}
+      - run: echo running on branch ${GITHUB_BASE_REF##*/}
 
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: AkshaySharma-BharatPe/JSBundleSize@master
-        with:
-          bootstrap: 'yarn install'
-          build_command: 'yarn run build'
-          dist_path: 'build/static'
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # - uses: AkshaySharma-BharatPe/JSBundleSize@master
+      #   with:
+      #     bootstrap: 'yarn install'
+      #     build_command: 'yarn run build'
+      #     dist_path: 'build/static'
+      #     token: ${{ secrets.GITHUB_TOKEN }}
 
