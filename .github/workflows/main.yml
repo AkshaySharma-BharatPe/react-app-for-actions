@@ -4,18 +4,28 @@ on: [push]
 jobs:
   calculate-size:
     runs-on: ubuntu-latest
-    steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      
+    steps:      
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
 
-      - run: echo "Your Branch name is - ${{ steps.extract_branch.outputs.branch }} | ."
+      - run: echo "Your Branch name is - ${{ steps.extract_branch.outputs.branch }}"
       - run: echo running on branch ${GITHUB_REF##*/}
-      - run: echo running on branch ${GITHUB_HEAD_REF##*/}
-      - run: echo running on branch ${GITHUB_BASE_REF##*/}
+
+      - run: |
+        if [[ "${{ github.ref }}" != "refs/tags/"* ]]; then
+          BASE_REF=$(printf "%q" "${{ github.base_ref }}")
+          HEAD_REF=$(printf "%q" "${{ github.head_ref }}")
+          REF=$(printf "%q" "${{ github.ref }}")
+          BASE_REF=${BASE_REF/refs\/heads\//}
+          HEAD_REF=${HEAD_REF/refs\/heads\//}
+          echo "::set-output name=base_ref_branch::$(eval printf "%s" "$BASE_REF")"
+          echo "::set-output name=head_ref_branch::$(eval printf "%s" "$HEAD_REF")"
+          REF_BRANCH=${REF/refs\/pull\//}
+          REF_BRANCH=${REF_BRANCH/refs\/heads\//}
+          echo "::set-output name=ref_branch::$(eval printf "%s" "$REF_BRANCH")"
+        fi
 
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
