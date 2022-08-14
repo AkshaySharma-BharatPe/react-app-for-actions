@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: base
-        path: output/stats.json
+        path: build/
         retention-days: 1
 
   build-pr:
@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pr
-        path: output/pr
+        path: build/
         retention-days: 1
 
   report:
