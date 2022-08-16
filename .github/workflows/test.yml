@@ -71,6 +71,20 @@ jobs:
         name: pr
         path: pr
 
+    - name: Build
+      run: |
+        ls
+        dir
+    
+    - uses: chronotruck/webpack-stats-diff-action@1.0.0
+      with:
+        base_stats_path: 'base/bundle-stats.json'
+        head_stats_path: 'pr/bundle-stats.json'
+        token: ${{ secrets.GITHUB_TOKEN }}
+        comment_title: 'Custom title'
+        announcement_percentage_threshold_increase: 0
+        announcement_percentage_threshold_decrease: -1.0
+
     - name: Get diff
       id: get-diff
       uses: ./
