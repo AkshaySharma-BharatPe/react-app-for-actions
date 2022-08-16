@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: base
-        path: build/stats.json
+        path: build/bundle-stats.json
         retention-days: 1
 
   build-pr:
@@ -47,7 +47,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pr
-        path: build/stats.json
+        path: build/bundle-stats.json
         retention-days: 1
 
   report:
@@ -75,8 +75,8 @@ jobs:
       id: get-diff
       uses: ./
       with:
-        base_path: './base/stats.json'
-        pr_path: './pr/stats.json'
+        base_path: './base/bundle-stats.json'
+        pr_path: './pr/bundle-stats.json'
 
     - name: Comment
       uses: NejcZdovc/comment-pr@v1
