@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: AkshaySharma-BharatPe/JSBundleSize@main
+      - uses: AkshaySharma-BharatPe/JSBundleSize@master
         with:
           bootstrap: 'yarn install'
           build_command: 'yarn run build'
