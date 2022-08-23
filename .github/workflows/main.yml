@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: bharatpe/pr-bundle-analyzer@main
+      - uses: AkshaySharma-BharatPe/JSBundleSize@dev
         with:
           install_command: 'yarn install'
           build_command: 'yarn run build'
