@@ -11,8 +11,8 @@ jobs:
           node-version: '16.16.0'
       - uses: AkshaySharma-BharatPe/JSBundleSize@dev
         with:
-          install_command: 'yarn install'
+          bootstrap: 'yarn install'
           build_command: 'yarn run build'
-          build_path: 'build/static'
+          dist_path: 'build/static'
           base_branch: ${{ github.base_ref }}
           head_branch: ${{ github.head_ref }}
