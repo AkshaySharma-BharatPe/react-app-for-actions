@@ -19,9 +19,9 @@ jobs:
       #     token: ${{ secrets.GITHUB_TOKEN }}
       - uses: bharatpe/pr-bundle-analyzer@dev
         with:
-          install_command: 'yarn install'
+          bootstrap: 'yarn install'
           build_command: 'yarn run build'
-          build_path: 'build/static'
+          dist_path: 'build/static'
           base_branch: ${{ github.base_ref }}
           head_branch: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
