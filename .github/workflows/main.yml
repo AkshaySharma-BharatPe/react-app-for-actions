@@ -11,6 +11,6 @@ jobs:
           node-version: '16.16.0'
       - uses: AkshaySharma-BharatPe/asset-test@main
         with:
-          thrashold_size: 1000
+          thrashold_size: 1600
           target_folder: src/assets
           token: ${{ secrets.GITHUB_TOKEN }}
