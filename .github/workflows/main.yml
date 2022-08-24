@@ -1,16 +1,12 @@
-name: 'PR Bundle Analyzer-111'
+name: 'Lighthouse'
 
 on: [pull_request]
 jobs:
-  Calculate-Bundle-Difference:
+  lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '16.16.0'
-      - uses: bharatpe/assets-checker@main
-        with:
-          thrashold_size: 1600
-          target_folder: src/assets
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@master
+    - name: Lighthouse
+      uses: foo-software/lighthouse-check-action@master
+      with:
+        urls: 'https://www.foo.software,https://www.google.com'
