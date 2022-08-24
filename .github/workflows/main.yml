@@ -11,4 +11,4 @@ jobs:
       with:
         urls: 'https://www.foo.software,https://www.google.com'
         prCommentEnabled: true
-        token: ${{ secrets.GITHUB_TOKEN }}
+        accessToken: ${{ secrets.GITHUB_TOKEN }}
