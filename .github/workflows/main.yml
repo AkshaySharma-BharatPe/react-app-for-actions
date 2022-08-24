@@ -9,8 +9,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: AkshaySharma-BharatPe/asset-test@main
+      - uses: bharatpe/assets-checker@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
-          thrashold_size: 100
+          thrashold_size: 10
