@@ -12,3 +12,5 @@ jobs:
       - uses: AkshaySharma-BharatPe/asset-test@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          target_folder: 'src/assets'
+          thrashold_size: 10
