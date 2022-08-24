@@ -1,1 +1,1 @@
-# Testing Github Workflow for JS bundler By BharatPe.
+# Testing Github Workflow for Assets Checker By BharatPe.
