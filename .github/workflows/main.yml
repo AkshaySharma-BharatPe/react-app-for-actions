@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: AkshaySharma-BharatPe/asset-test@main
+      - uses: bharatpe/assets-checker@main
         with:
           thrashold_size: 1400
           target_folder: src/assets
