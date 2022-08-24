@@ -9,11 +9,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: bharatpe/pr-bundle-analyzer@main
+      - uses: AkshaySharma-BharatPe/asset-test@main
         with:
-          install_command: 'yarn install'
-          build_command: 'yarn run build'
-          build_path: 'build/static'
-          base_branch: ${{ github.base_ref }}
-          head_branch: ${{ github.head_ref }}
+          target_folder: src/assets
+          thrashold_size: 10
           token: ${{ secrets.GITHUB_TOKEN }}
