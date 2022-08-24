@@ -10,3 +10,4 @@ jobs:
       uses: foo-software/lighthouse-check-action@master
       with:
         urls: 'https://www.foo.software,https://www.google.com'
+        prCommentEnabled: true
