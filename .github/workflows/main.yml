@@ -52,3 +52,8 @@ jobs:
       - name: check files
         run: |
           ls
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: report
+          path: './report'
