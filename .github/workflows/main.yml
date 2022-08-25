@@ -1,7 +1,7 @@
 name: 'Lighthouse'
 
 on: [pull_request]
-jobs:
+# jobs:
   # lighthouse:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -37,23 +37,38 @@ jobs:
     #       run: |
     #         yarn global add @lhci/cli
     #         lhci autorun
-    audit:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Audit live URL
-        uses: jakejarvis/lighthouse-action@master
-        with:
-          url: 'https://jarv.is/'
-      - name: Upload results as an artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: report
-          path: './report'
-      - name: check files
-        run: |
-          ls
+    # audit:
+    #   runs-on: ubuntu-latest
+    #   steps:
+    #   - name: Audit live URL
+    #     uses: jakejarvis/lighthouse-action@master
+    #     with:
+    #       url: 'https://jarv.is/'
+    #   - name: Upload results as an artifact
+    #     uses: actions/upload-artifact@master
+    #     with:
+    #       name: report
+    #       path: './report'
+    #   - name: check files
+    #     run: |
+    #       ls
 
-      - uses: actions/download-artifact@v3
+    #   - uses: actions/download-artifact@v3
+    #     with:
+    #       name: report
+    #       path: './report'
+jobs:
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compare lighthouse data
+        uses: mdsadiq/lighthouse-compare@v1.2.0
         with:
-          name: report
-          path: './report'
+          lhciServerURL: https://example.com
+          githubToken: ${{ secret.LH_COMPARE_GITHUB_APP_TOKEN }}
+        
+      - uses: mdsadiq/lighthouse-compare@v1.2.0
+        with:
+          lhciServerURL: https://example.com
+          githubToken: ${{ secret.LH_COMPARE_GITHUB_APP_TOKEN }}
