@@ -2,13 +2,37 @@ name: 'Lighthouse'
 
 on: [pull_request]
 jobs:
-  lighthouse:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: Lighthouse
-      uses: foo-software/lighthouse-check-action@master
-      with:
-        urls: 'https://www.foo.software,https://www.google.com'
-        prCommentEnabled: true
-        accessToken: ${{ secrets.GITHUB_TOKEN }}
+  # lighthouse:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@master
+  #   - name: Lighthouse
+  #     uses: foo-software/lighthouse-check-action@master
+  #     with:
+  #       urls: 'https://www.foo.software,https://www.google.com'
+  #       prCommentEnabled: true
+  #       accessToken: ${{ secrets.GITHUB_TOKEN }}
+    lhci:
+      name: Lighthouse CI
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node: [14]
+      steps:
+        - uses: actions/checkout@v3
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+            registry-url: 'https://registry.npmjs.org'
+        - name: Configure git
+          run: yarn install --frozen-lockfile
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
+            TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        - name: yarn build
+          run: yarn build
+        - name: run Lighthouse CI
+          run: |
+            yarn global add @lhci/cli
+            lhci autorun
