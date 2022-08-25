@@ -49,3 +49,6 @@ jobs:
         with:
           name: report
           path: './report'
+      - name: check files
+        run: |
+          ls
