@@ -66,9 +66,9 @@ jobs:
         uses: mdsadiq/lighthouse-compare@v1.2.0
         with:
           lhciServerURL: https://example.com
-          githubToken: ${{ secret.LH_COMPARE_GITHUB_APP_TOKEN }}
+          githubToken: ${{ secret.GITHUB_TOKEN }}
         
       - uses: mdsadiq/lighthouse-compare@v1.2.0
         with:
           lhciServerURL: https://example.com
-          githubToken: ${{ secret.LH_COMPARE_GITHUB_APP_TOKEN }}
+          githubToken: ${{ secret.GITHUB_TOKEN }}
