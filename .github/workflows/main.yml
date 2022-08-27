@@ -1,74 +1,74 @@
-name: 'Lighthouse'
+# name: 'Lighthouse'
 
-on: [pull_request]
+# on: [pull_request]
+# # jobs:
+#   # lighthouse:
+#   #   runs-on: ubuntu-latest
+#   #   steps:
+#   #   - uses: actions/checkout@master
+#   #   - name: Lighthouse
+#   #     uses: foo-software/lighthouse-check-action@master
+#   #     with:
+#   #       urls: 'https://www.foo.software,https://www.google.com'
+#   #       prCommentEnabled: true
+#   #       accessToken: ${{ secrets.GITHUB_TOKEN }}
+#     # lhci:
+#     #   name: Lighthouse CI
+#     #   runs-on: ubuntu-latest
+#     #   strategy:
+#     #     matrix:
+#     #       node: [14]
+#     #   steps:
+#     #     - uses: actions/checkout@v3
+#     #     - name: Use Node.js ${{ matrix.node-version }}
+#     #       uses: actions/setup-node@v3
+#     #       with:
+#     #         node-version: ${{ matrix.node-version }}
+#     #         registry-url: 'https://registry.npmjs.org'
+#     #     - name: Configure git
+#     #       run: yarn install --frozen-lockfile
+#     #       env:
+#     #         NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
+#     #         TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#     #         LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#     #     - name: yarn build
+#     #       run: yarn build
+#     #     - name: run Lighthouse CI
+#     #       run: |
+#     #         yarn global add @lhci/cli
+#     #         lhci autorun
+#     # audit:
+#     #   runs-on: ubuntu-latest
+#     #   steps:
+#     #   - name: Audit live URL
+#     #     uses: jakejarvis/lighthouse-action@master
+#     #     with:
+#     #       url: 'https://jarv.is/'
+#     #   - name: Upload results as an artifact
+#     #     uses: actions/upload-artifact@master
+#     #     with:
+#     #       name: report
+#     #       path: './report'
+#     #   - name: check files
+#     #     run: |
+#     #       ls
+
+#     #   - uses: actions/download-artifact@v3
+#     #     with:
+#     #       name: report
+#     #       path: './report'
 # jobs:
-  # lighthouse:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - name: Lighthouse
-  #     uses: foo-software/lighthouse-check-action@master
-  #     with:
-  #       urls: 'https://www.foo.software,https://www.google.com'
-  #       prCommentEnabled: true
-  #       accessToken: ${{ secrets.GITHUB_TOKEN }}
-    # lhci:
-    #   name: Lighthouse CI
-    #   runs-on: ubuntu-latest
-    #   strategy:
-    #     matrix:
-    #       node: [14]
-    #   steps:
-    #     - uses: actions/checkout@v3
-    #     - name: Use Node.js ${{ matrix.node-version }}
-    #       uses: actions/setup-node@v3
-    #       with:
-    #         node-version: ${{ matrix.node-version }}
-    #         registry-url: 'https://registry.npmjs.org'
-    #     - name: Configure git
-    #       run: yarn install --frozen-lockfile
-    #       env:
-    #         NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
-    #         TOKEN: ${{ secrets.ACCESS_TOKEN }}
-    #         LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     - name: yarn build
-    #       run: yarn build
-    #     - name: run Lighthouse CI
-    #       run: |
-    #         yarn global add @lhci/cli
-    #         lhci autorun
-    # audit:
-    #   runs-on: ubuntu-latest
-    #   steps:
-    #   - name: Audit live URL
-    #     uses: jakejarvis/lighthouse-action@master
-    #     with:
-    #       url: 'https://jarv.is/'
-    #   - name: Upload results as an artifact
-    #     uses: actions/upload-artifact@master
-    #     with:
-    #       name: report
-    #       path: './report'
-    #   - name: check files
-    #     run: |
-    #       ls
-
-    #   - uses: actions/download-artifact@v3
-    #     with:
-    #       name: report
-    #       path: './report'
-jobs:
-  lighthouse-audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Compare lighthouse data
-        uses: mdsadiq/lighthouse-compare@v1.2.0
-        with:
-          lhciServerURL: https://example.com
-          githubToken: ${{ secret.GITHUB_TOKEN }}
+#   lighthouse-audit:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Compare lighthouse data
+#         uses: mdsadiq/lighthouse-compare@v1.2.0
+#         with:
+#           lhciServerURL: https://example.com
+#           githubToken: ${{ secret.GITHUB_TOKEN }}
         
-      - uses: mdsadiq/lighthouse-compare@v1.2.0
-        with:
-          lhciServerURL: https://example.com
-          githubToken: ${{ secret.GITHUB_TOKEN }}
+#       - uses: mdsadiq/lighthouse-compare@v1.2.0
+#         with:
+#           lhciServerURL: https://example.com
+#           githubToken: ${{ secret.GITHUB_TOKEN }}
