@@ -1,4 +1,4 @@
-name: 'Assets Checker by BharatPe'
+name: 'Master Actions by BharatPe'
 
 on: [pull_request]
 jobs:
@@ -19,3 +19,21 @@ jobs:
           build_path: 'build/static'
           base_branch: ${{ github.base_ref }}
           head_branch: ${{ github.head_ref }}
+
+      - name: Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        id: lighthouseCheck
+        with:
+          urls: 'https://www.foo.software,https://www.google.com'
+          gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+          prCommentEnabled: true
+          
+      - name: Verify Lighthouse Check results
+        uses: foo-software/lighthouse-check-status-action@master
+        with:
+          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: "90"
+          minBestPracticesScore: "50"
+          minPerformanceScore: "50"
+          minProgressiveWebAppScore: "50"
+          minSeoScore: "50"
