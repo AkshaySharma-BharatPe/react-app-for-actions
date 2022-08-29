@@ -14,3 +14,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
           thrashold_size: 100
+          install_command: 'yarn install'
+          build_command: 'yarn run build'
+          build_path: 'build/static'
+          base_branch: ${{ github.base_ref }}
+          head_branch: ${{ github.head_ref }}
