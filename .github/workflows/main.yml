@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: bharatpe/bp-actions-master@dev
+      - uses: AkshaySharma-BharatPe/master-test@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
@@ -19,21 +19,3 @@ jobs:
           build_path: 'build/static'
           base_branch: ${{ github.base_ref }}
           head_branch: ${{ github.head_ref }}
-
-      - name: Lighthouse
-        uses: foo-software/lighthouse-check-action@master
-        id: lighthouseCheck
-        with:
-          urls: 'https://www.foo.software,https://www.google.com'
-          gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
-          prCommentEnabled: true
-          
-      - name: Verify Lighthouse Check results
-        uses: foo-software/lighthouse-check-status-action@master
-        with:
-          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: "90"
-          minBestPracticesScore: "50"
-          minPerformanceScore: "50"
-          minProgressiveWebAppScore: "50"
-          minSeoScore: "50"
