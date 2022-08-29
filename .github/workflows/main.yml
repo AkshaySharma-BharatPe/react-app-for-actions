@@ -1,14 +1,16 @@
-name: 'PR Bundle Analyzer-111'
+name: 'Assets Checker by BharatPe'
 
 on: [pull_request]
 jobs:
-  annotate-pr:
+  Assets-Checker:
     runs-on: ubuntu-latest
-    name: Annotates pull request with metadata
     steps:
-      - name: Annotate PR
-        uses: AkshaySharma-BharatPe/pr-metadata-actions@main
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
         with:
+          node-version: '16.16.0'
+      - uses: AkshaySharma-BharatPe/master-test@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
           thrashold_size: 100
-          token: ${{ secrets.GITHUB_TOKEN }}
