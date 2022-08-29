@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.16.0'
-      - uses: AkshaySharma-BharatPe/master-test@main
+      - uses: bharatpe/bp-actions-master@dev
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
