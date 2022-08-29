@@ -2,15 +2,14 @@ name: 'PR Bundle Analyzer-111'
 
 on: [pull_request]
 jobs:
-  Calculate-Bundle-Difference:
+  annotate-pr:
     runs-on: ubuntu-latest
+    name: Annotates pull request with metadata
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
+      - name: Annotate PR
+        uses: AkshaySharma-BharatPe/pr-metadata-actions@main
         with:
-          node-version: '16.16.0'
-      - uses: bharatpe/assets-checker@main
-        with:
-          thrashold_size: 1600
-          target_folder: src/assets
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          pr_number: ${{ github.event.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
