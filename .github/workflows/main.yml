@@ -9,7 +9,6 @@ jobs:
       - name: Annotate PR
         uses: AkshaySharma-BharatPe/pr-metadata-actions@main
         with:
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          pr_number: ${{ github.event.number }}
+          target_folder: src/assets
+          thrashold_size: 100
           token: ${{ secrets.GITHUB_TOKEN }}
