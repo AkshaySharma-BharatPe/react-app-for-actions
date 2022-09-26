@@ -21,7 +21,6 @@ jobs:
           field: version
           value: "testtt"
 
-      - name: Check if the value updated or not
       - id: set_var
         run: |
           content=`cat ./path/to/package.json`
