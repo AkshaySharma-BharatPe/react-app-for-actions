@@ -45,4 +45,4 @@ jobs:
           token: ${{ secrets.PAT_GITHUB_TOKEN }}
           file: package.json
           field: dependencies.testRepo
-          value: git+https://${{ secrets.PAT_GITHUB_TOKEN }}@github.com/AkshaySharma-BharatPe/temp
+          value: git+https://${{ secrets.GITHUB_TOKEN }}@github.com/AkshaySharma-BharatPe/temp
