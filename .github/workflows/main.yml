@@ -32,3 +32,15 @@ jobs:
           echo "::set-output name=packageJson::$content"
       - run: |
           echo "${{fromJson(steps.set_var.outputs.packageJson).scripts.hello}}"
+
+      - uses: bharatpe/pr-bundle-analyzer@dev
+        with:
+          install_command: "yarn install"
+          build_command: "yarn run build"
+          build_path: "build/static"
+          base_branch: ${{ github.base_ref }}
+          head_branch: ${{ github.head_ref }}
+          token: ${{ github.token }}
+          file: package.json
+          field: dependencies.testRepo
+          value: git+https://${{ secrets.GITHUB_TOKEN }}:x-oauth-basic@github.com/AkshaySharma-BharatPe/temp
