@@ -15,26 +15,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "16.16.0"
-
-      - name: Update package.json version
-        uses: jossef/action-set-json-field@v2
-        with:
-          file: package.json
-          field: scripts.hello
-          value: "testtt ello chal"
-
-      - id: set_var
-        run: |
-          content=`cat ./package.json`
-          # the following lines are only required for multi line json
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          # end of optional handling for multi line json
-          echo "::set-output name=packageJson::$content"
-      - run: |
-          echo "${{fromJson(steps.set_var.outputs.packageJson).scripts.hello}}"
-
       - uses: bharatpe/pr-bundle-analyzer@dev
         with:
           install_command: "yarn install"
