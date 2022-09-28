@@ -43,4 +43,4 @@ jobs:
           token: ${{ github.token }}
           file: package.json
           field: dependencies.testRepo
-          value: git+https://${{ secrets.GITHUB_TOKEN }}:x-oauth-basic@github.com/AkshaySharma-BharatPe/temp
+          value: git+https://${{ github.token }}:x-oauth-basic@github.com/AkshaySharma-BharatPe/temp
