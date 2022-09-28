@@ -3,7 +3,7 @@ name: "Edit Package JSON"
 on: [pull_request]
 
 env:
-  GITHUB_TOKEN: ${{ secret.PAT_GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
 
 jobs:
   Calculate-Bundle-Difference:
@@ -40,7 +40,7 @@ jobs:
           build_path: "build/static"
           base_branch: ${{ github.base_ref }}
           head_branch: ${{ github.head_ref }}
-          token: ${{ secret.PAT_GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GITHUB_TOKEN }}
           file: package.json
           field: dependencies.testRepo
-          value: git+https://${{ secret.PAT_GITHUB_TOKEN }}:x-oauth-basic@github.com/AkshaySharma-BharatPe/temp
+          value: git+https://${{ secrets.PAT_GITHUB_TOKEN }}:x-oauth-basic@github.com/AkshaySharma-BharatPe/temp
