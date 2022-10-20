@@ -1,16 +1,32 @@
-name: 'PR Bundle Analyzer-111'
+name: "Bump Version"
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - "master"
+
 jobs:
-  Calculate-Bundle-Difference:
+  bump-version:
+    name: "Bump Version on master"
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
         with:
-          node-version: '16.16.0'
-      - uses: bharatpe/assets-checker@main
+          ref: ${{ github.ref }}
+      - name: "cat package.json"
+        run: cat ./package.json
+      - name: "Automated Version Bump"
+        id: version-bump
+        uses: "phips28/gh-action-bump-version@master"
         with:
-          thrashold_size: 1600
-          target_folder: src/assets
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tag-prefix: "v"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "cat package.json"
+        run: cat ./package.json
+      - name: "Output Step"
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
