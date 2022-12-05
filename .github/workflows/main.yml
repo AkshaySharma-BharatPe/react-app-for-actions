@@ -16,4 +16,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
-          thrashold_size: 100
+          thrashold_size: 10
