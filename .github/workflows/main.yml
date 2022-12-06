@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14.15.0"
-      - uses: bharatpe/assets-checker@feat/table
+      - uses: bharatpe/assets-checker@WC-116
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
