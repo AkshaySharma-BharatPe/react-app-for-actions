@@ -1,16 +1,16 @@
-name: 'PR Bundle Analyzer-111'
+name: "Assets Checker by BharatPe"
 
 on: [pull_request]
 jobs:
-  Calculate-Bundle-Difference:
+  Assets-Checker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: '16.16.0'
-      - uses: bharatpe/assets-checker@main
+          node-version: "14.15.0"
+      - uses: bharatpe/assets-checker@fix/v2-fixes
         with:
-          thrashold_size: 1400
-          target_folder: src/assets
           token: ${{ secrets.GITHUB_TOKEN }}
+          target_folder: src/assets
+          thrashold_size: 100
