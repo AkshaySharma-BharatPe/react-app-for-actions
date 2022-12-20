@@ -1,36 +1,7 @@
-name: "Bump Version"
+name: "Assets Checker by BharatPe"
 
-on:
-  push:
-    branches: [main, master]
-
+on: [pull_request]
 jobs:
-  bump-version:
-    name: "Bump Version on master"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: "Checkout source code"
-        uses: "actions/checkout@v2"
-        with:
-          ref: ${{ github.ref }}
-
-      - name: "cat package.json"
-        run: cat ./package.json
-
-      - name: "Automated Version Bump"
-        id: version-bump
-        uses: "phips28/gh-action-bump-version@master"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: "cat package.json"
-        run: cat ./package.json
-      - name: "Output Step"
-        env:
-          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
-        run: echo "new tag $NEW_TAG"
-
   Assets-Checker:
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14.15.0"
-      - uses: bharatpe/assets-checker@dev
+      - uses: bharatpe/assets-checker@fix/v2-fixes
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: src/assets
