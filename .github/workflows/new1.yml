@@ -1,6 +1,10 @@
 name: Check Branch Name and Verify JIRA ID on JIRA Board
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
+      - main
 
 jobs:
   run-script:
