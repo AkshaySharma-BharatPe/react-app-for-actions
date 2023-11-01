@@ -9,8 +9,9 @@ jobs:
       - uses: actions/checkout@v1
       - run: |
           echo "A initial message"
-          pip install -r requirements.txt
-          echo "Another message or command"
-          python myscript.py
-          bash some-shell-script-file.sh -xe
+          if true; then
+          echo "print true"
+          else 
+          echo "else inside"
+          exit 1
       - run: echo "One last message"
