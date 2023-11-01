@@ -1,17 +1,19 @@
-name: My Workflow
+name: If Else Echo Run Script
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  runMultipleCommands:
+  run-script:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1
-      - run: |
-          echo "A initial message"
-          if true; then
-          echo "print true"
-          else 
-          echo "else inside"
-          exit 1
-      - run: echo "One last message"
+      - name: Run If Else Script
+        run: |
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "Event was a push"
+          else
+            echo "Event was not a push"
+          fi
