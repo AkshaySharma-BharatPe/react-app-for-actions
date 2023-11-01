@@ -1,4 +1,4 @@
-name: If Else Echo Run Script
+name: Check Branch Name and Verify JIRA ID on JIRA Board
 
 on: [push]
 
@@ -14,3 +14,48 @@ jobs:
           else
             echo "Event was not a push"
           fi
+
+      - name: Check Branch Name
+        id: check-branch
+        run: |
+          branch_name="${GITHUB_REF#refs/heads/}"
+          if [[ $branch_name =~ [A-Z]{2,5}-[0-9]+ ]]; then
+            echo "Branch name contains a JIRA ID: $branch_name"
+            echo "::set-output name=jira_id::$branch_name"
+          else
+            echo "Branch name does not contain a JIRA ID: $branch_name"
+            exit 1
+          fi
+
+# on:
+#   push:
+#     branches:
+#       - main
+# permissions:
+#   contents: write
+#   pull-requests: write
+
+# jobs:
+#   check-branch-and-verify-jira-id:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Check Branch Name
+#         id: check-branch
+#         run: |
+#           branch_name="${GITHUB_REF#refs/heads/}"
+#           if [[ $branch_name =~ [A-Z]{2,5}-[0-9]+ ]]; then
+#             echo "Branch name contains a JIRA ID: $branch_name"
+#             echo "::set-output name=jira_id::$branch_name"
+#           else
+#             echo "Branch name does not contain a JIRA ID: $branch_name"
+#             exit 1
+#           fi
+#       - name: Verify JIRA ID on JIRA Board
+#         id: verify-jira-id
+#         run: |
+#           jira_id="${{ steps.check-branch.outputs.jira_id }}"
+#           jira_url="https://your-jira-instance.atlassian.net/rest/api/2/issue/$jira_id"
+
+#           # Replace 'your-jira-username' and 'your-jira-api-token' with your Jira credentials
+#           curl -u your-jira-username:your-jira-api-token -X GET -H "Content-Type: application/json" $jira_url | grep -q 'id' && echo "JIRA ID $jira_id exists on the JIRA board" || (echo "JIRA ID $jira_id does not exist on the JIRA board" && exit 1)
