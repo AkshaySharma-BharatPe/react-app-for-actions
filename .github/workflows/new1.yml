@@ -1,9 +1,6 @@
 name: If Else Echo Run Script
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   run-script:
